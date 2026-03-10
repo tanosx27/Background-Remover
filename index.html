@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Remover · Простой и рабочий</title>
+    <title>Background Remover · Два режима</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
@@ -27,7 +27,7 @@
 
         .app-container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1400px;
             background: white;
             border-radius: 40px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
@@ -60,8 +60,71 @@
             font-weight: 700;
         }
 
+        .beta-badge {
+            background: #fbbf24;
+            color: #1e293b;
+            padding: 4px 12px;
+            border-radius: 60px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+
+        .instruction-btn {
+            background: none;
+            border: 2px solid #e2e8f0;
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .instruction-btn:hover {
+            background: #f1f5f9;
+            border-color: #2563eb;
+        }
+
         .main-content {
             padding: 40px;
+        }
+
+        /* Переключатель режимов */
+        .mode-switch {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .mode-btn {
+            background: #f1f5f9;
+            border: 2px solid #e2e8f0;
+            border-radius: 40px;
+            padding: 12px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .mode-btn.active {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: white;
+        }
+
+        .mode-btn i {
+            font-size: 20px;
         }
 
         .upload-area {
@@ -129,44 +192,106 @@
             justify-content: center;
             border: 2px solid #e2e8f0;
             overflow: hidden;
+            position: relative;
+        }
+
+        .image-container canvas {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            display: block;
+            cursor: crosshair;
         }
 
         .image-container img {
             max-width: 100%;
-            max-height: 350px;
+            max-height: 400px;
             object-fit: contain;
         }
 
-        .controls {
+        /* Панель инструментов для ручного режима */
+        .manual-tools {
             background: #f8fafc;
             border-radius: 24px;
-            padding: 25px;
-            margin: 30px 0;
+            padding: 20px;
+            margin: 20px 0;
             border: 1px solid #e2e8f0;
         }
 
-        .control-group {
-            margin-bottom: 20px;
+        .tool-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
-        .control-label {
+        .tool-btn {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 40px;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
-            color: #334155;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .tool-btn.active {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: white;
+        }
+
+        .tool-btn i {
+            font-size: 18px;
+        }
+
+        .brush-size {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .brush-size label {
             font-weight: 600;
-            margin-bottom: 12px;
+            color: #334155;
+        }
+
+        .brush-size input {
+            width: 150px;
+        }
+
+        .size-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        /* Панель для авто-режима */
+        .auto-controls {
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
         }
 
         .color-inputs {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
+            margin-bottom: 20px;
         }
 
         .color-input-group {
             flex: 1;
-            min-width: 120px;
+            min-width: 100px;
         }
 
         .color-input-group label {
@@ -181,17 +306,30 @@
             padding: 8px;
             border: 2px solid #e2e8f0;
             border-radius: 10px;
-            font-size: 14px;
+        }
+
+        .auto-detect-btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .slider-group {
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .slider-group label {
             display: block;
             color: #334155;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         input[type=range] {
@@ -209,7 +347,6 @@
             background: #2563eb;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
         }
 
         .threshold-value {
@@ -223,12 +360,12 @@
             display: flex;
             gap: 15px;
             justify-content: center;
-            margin-top: 30px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 16px 40px;
+            padding: 14px 35px;
             font-size: 18px;
             font-weight: 600;
             border: none;
@@ -243,12 +380,12 @@
         .btn-primary {
             background: #2563eb;
             color: white;
-            box-shadow: 0 10px 20px -5px #2563eb80;
+            box-shadow: 0 8px 16px -4px #2563eb80;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 25px -5px #2563eb;
+            box-shadow: 0 12px 20px -4px #2563eb;
         }
 
         .btn-secondary {
@@ -292,11 +429,66 @@
             text-align: center;
         }
 
-        .note {
-            text-align: center;
-            color: #64748b;
-            font-size: 14px;
-            margin-top: 30px;
+        /* Инструкция (модальное окно) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 40px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-content h2 {
+            color: #1e293b;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-content h3 {
+            color: #334155;
+            margin: 20px 0 10px;
+        }
+
+        .modal-content ul {
+            margin-left: 25px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .modal-content li {
+            margin-bottom: 8px;
+        }
+
+        .close-modal {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -305,12 +497,53 @@
         <div class="app-header">
             <div class="logo">
                 <i class="fas fa-cut logo-icon"></i>
-                <h1 class="app-title">Background Remover · Простой</h1>
+                <h1 class="app-title">Background Remover</h1>
+                <span class="beta-badge">Beta</span>
+            </div>
+            <button class="instruction-btn" id="instructionBtn">
+                <i class="fas fa-question-circle"></i> Инструкция
+            </button>
+        </div>
+
+        <!-- Модальное окно инструкции -->
+        <div class="modal" id="instructionModal">
+            <div class="modal-content">
+                <h2><i class="fas fa-info-circle"></i> Как пользоваться</h2>
+                
+                <h3>🔹 Автоматический режим (в разработке)</h3>
+                <ul>
+                    <li>Хорошо удаляет однотонный фон (особенно белый).</li>
+                    <li>Вы можете вручную задать цвет фона или нажать "Определить автоматически" (цвет возьмётся из углов).</li>
+                    <li>Ползунок чувствительности: меньше — точное совпадение, больше — удаляет похожие оттенки.</li>
+                    <li><strong>Важно:</strong> на сложных фонах может работать некорректно — используйте ручной режим.</li>
+                </ul>
+
+                <h3>🔸 Ручной режим</h3>
+                <ul>
+                    <li>Вы сами "стираете" фон кистью.</li>
+                    <li>Выберите инструмент: <i class="fas fa-eraser"></i> Ластик (удаляет фон) или <i class="fas fa-paint-brush"></i> Восстановитель (возвращает удалённые области).</li>
+                    <li>Регулируйте размер кисти.</li>
+                    <li>Просто рисуйте по изображению — фон станет прозрачным.</li>
+                </ul>
+
+                <p style="margin-top:20px; color:#64748b;">Автоматический режим дорабатывается. Для лучшего качества используйте ручной.</p>
+
+                <button class="close-modal" id="closeModal">Понятно</button>
             </div>
         </div>
 
         <div class="main-content">
-            <!-- Загрузка -->
+            <!-- Переключатель режимов -->
+            <div class="mode-switch">
+                <button class="mode-btn active" id="autoModeBtn">
+                    <i class="fas fa-magic"></i> Авто
+                </button>
+                <button class="mode-btn" id="manualModeBtn">
+                    <i class="fas fa-paint-brush"></i> Ручной
+                </button>
+            </div>
+
+            <!-- Загрузка изображения (общая) -->
             <div class="upload-area" id="dropZone">
                 <i class="fas fa-cloud-upload-alt"></i>
                 <p>Нажмите или перетащите изображение</p>
@@ -321,7 +554,7 @@
             <!-- Ошибки -->
             <div id="errorMessage" class="error"></div>
 
-            <!-- Превью -->
+            <!-- Превью (общее) -->
             <div id="previewSection" style="display: none;">
                 <div class="preview-grid">
                     <div class="preview-card">
@@ -333,118 +566,186 @@
                     <div class="preview-card">
                         <h3><i class="fas fa-cut"></i> Результат</h3>
                         <div class="image-container" id="resultContainer">
-                            <img id="processedImage" src="" alt="Processed" style="display: none;">
-                            <div id="loader" style="display: none; text-align: center;">
-                                <div class="loader"></div>
-                                <p style="color: #64748b; margin-top: 10px;">Обработка...</p>
-                            </div>
+                            <!-- Здесь будет canvas для ручного режима или img для авто -->
                         </div>
                     </div>
                 </div>
 
-                <!-- ПРОСТЫЕ НАСТРОЙКИ -->
-                <div class="controls">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <i class="fas fa-eyedropper"></i>
-                            <span>Цвет фона (выберите или введите RGB)</span>
+                <!-- Панель для авто-режима -->
+                <div id="autoPanel" class="auto-controls">
+                    <div class="color-inputs">
+                        <div class="color-input-group">
+                            <label>Красный (R)</label>
+                            <input type="number" id="redInput" min="0" max="255" value="255">
                         </div>
-                        <div class="color-inputs">
-                            <div class="color-input-group">
-                                <label>Красный (R)</label>
-                                <input type="number" id="redInput" min="0" max="255" value="255">
-                            </div>
-                            <div class="color-input-group">
-                                <label>Зелёный (G)</label>
-                                <input type="number" id="greenInput" min="0" max="255" value="255">
-                            </div>
-                            <div class="color-input-group">
-                                <label>Синий (B)</label>
-                                <input type="number" id="blueInput" min="0" max="255" value="255">
-                            </div>
+                        <div class="color-input-group">
+                            <label>Зелёный (G)</label>
+                            <input type="number" id="greenInput" min="0" max="255" value="255">
+                        </div>
+                        <div class="color-input-group">
+                            <label>Синий (B)</label>
+                            <input type="number" id="blueInput" min="0" max="255" value="255">
                         </div>
                     </div>
-
+                    <button class="auto-detect-btn" id="detectColorBtn">
+                        <i class="fas fa-eye-dropper"></i> Определить цвет фона
+                    </button>
                     <div class="slider-group">
-                        <div class="control-label">
-                            <i class="fas fa-sliders-h"></i>
-                            <span>Чувствительность (порог совпадения)</span>
-                        </div>
+                        <label>Чувствительность <i class="fas fa-info-circle" title="Меньше = точное совпадение, больше = удаляет похожие"></i></label>
                         <input type="range" id="thresholdSlider" min="1" max="100" value="30">
                         <div class="threshold-value" id="thresholdValue">30</div>
-                        <p style="color: #64748b; font-size: 13px; margin-top: 10px;">
-                            <i class="fas fa-info-circle"></i> 
-                            Меньше = точное совпадение, больше = удаляет похожие цвета
-                        </p>
+                    </div>
+                    <div style="text-align: center; color: #f97316; margin-top: 10px;">
+                        <i class="fas fa-exclamation-triangle"></i> Автоматический режим в разработке. Лучше всего удаляет белый фон.
                     </div>
                 </div>
 
-                <!-- Кнопки -->
+                <!-- Панель для ручного режима -->
+                <div id="manualPanel" class="manual-tools" style="display: none;">
+                    <div class="tool-row">
+                        <button class="tool-btn active" id="eraserTool">
+                            <i class="fas fa-eraser"></i> Ластик
+                        </button>
+                        <button class="tool-btn" id="restoreTool">
+                            <i class="fas fa-paint-brush"></i> Восстановитель
+                        </button>
+                    </div>
+                    <div class="tool-row">
+                        <div class="brush-size">
+                            <label>Размер кисти:</label>
+                            <input type="range" id="brushSize" min="5" max="100" value="20">
+                            <span class="size-value" id="brushSizeValue">20</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Кнопки действий -->
                 <div class="button-group">
                     <button class="btn btn-primary" id="processBtn" disabled>
-                        <i class="fas fa-magic"></i> Удалить фон
+                        <i class="fas fa-cut"></i> Применить
                     </button>
                     <button class="btn btn-secondary" id="downloadBtn" disabled>
                         <i class="fas fa-download"></i> Скачать
                     </button>
                 </div>
             </div>
-
-            <div class="note">
-                <i class="fas fa-info-circle"></i> Простой алгоритм: выбираете цвет фона → удаляем
-            </div>
         </div>
     </div>
 
     <script>
-        // Элементы
+        // DOM элементы
         const dropZone = document.getElementById('dropZone');
         const fileInput = document.getElementById('fileInput');
         const originalImage = document.getElementById('originalImage');
-        const processedImage = document.getElementById('processedImage');
         const previewSection = document.getElementById('previewSection');
         const processBtn = document.getElementById('processBtn');
         const downloadBtn = document.getElementById('downloadBtn');
         const errorDiv = document.getElementById('errorMessage');
-        const loader = document.getElementById('loader');
+        const resultContainer = document.getElementById('resultContainer');
+        const autoModeBtn = document.getElementById('autoModeBtn');
+        const manualModeBtn = document.getElementById('manualModeBtn');
+        const autoPanel = document.getElementById('autoPanel');
+        const manualPanel = document.getElementById('manualPanel');
         const redInput = document.getElementById('redInput');
         const greenInput = document.getElementById('greenInput');
         const blueInput = document.getElementById('blueInput');
         const thresholdSlider = document.getElementById('thresholdSlider');
         const thresholdValue = document.getElementById('thresholdValue');
+        const detectColorBtn = document.getElementById('detectColorBtn');
+        const eraserTool = document.getElementById('eraserTool');
+        const restoreTool = document.getElementById('restoreTool');
+        const brushSize = document.getElementById('brushSize');
+        const brushSizeValue = document.getElementById('brushSizeValue');
+        const instructionBtn = document.getElementById('instructionBtn');
+        const instructionModal = document.getElementById('instructionModal');
+        const closeModal = document.getElementById('closeModal');
 
-        // Переменные
+        // Переменные состояния
         let selectedFile = null;
+        let currentMode = 'auto'; // 'auto' или 'manual'
         let currentResultBlob = null;
+        let canvas = null; // для ручного режима
+        let ctx = null;
+        let isDrawing = false;
+        let currentTool = 'eraser'; // 'eraser' или 'restore'
+        let lastX = 0, lastY = 0;
 
-        // Обновление значения порога
+        // Обновление значений
         thresholdSlider.addEventListener('input', (e) => {
             thresholdValue.textContent = e.target.value;
         });
+        brushSize.addEventListener('input', (e) => {
+            brushSizeValue.textContent = e.target.value;
+        });
 
-        // Загрузка
+        // Переключение режимов
+        autoModeBtn.addEventListener('click', () => {
+            autoModeBtn.classList.add('active');
+            manualModeBtn.classList.remove('active');
+            autoPanel.style.display = 'block';
+            manualPanel.style.display = 'none';
+            currentMode = 'auto';
+            // Обновим результат, если есть изображение
+            if (selectedFile) {
+                // Сбросим результат, можно заново показать оригинал
+                resetResult();
+            }
+        });
+
+        manualModeBtn.addEventListener('click', () => {
+            manualModeBtn.classList.add('active');
+            autoModeBtn.classList.remove('active');
+            manualPanel.style.display = 'block';
+            autoPanel.style.display = 'none';
+            currentMode = 'manual';
+            if (selectedFile) {
+                initManualCanvas();
+            }
+        });
+
+        // Инструменты ручного режима
+        eraserTool.addEventListener('click', () => {
+            eraserTool.classList.add('active');
+            restoreTool.classList.remove('active');
+            currentTool = 'eraser';
+        });
+        restoreTool.addEventListener('click', () => {
+            restoreTool.classList.add('active');
+            eraserTool.classList.remove('active');
+            currentTool = 'restore';
+        });
+
+        // Инструкция
+        instructionBtn.addEventListener('click', () => {
+            instructionModal.classList.add('active');
+        });
+        closeModal.addEventListener('click', () => {
+            instructionModal.classList.remove('active');
+        });
+        window.addEventListener('click', (e) => {
+            if (e.target === instructionModal) {
+                instructionModal.classList.remove('active');
+            }
+        });
+
+        // Загрузка файла
         dropZone.addEventListener('click', () => fileInput.click());
-
         dropZone.addEventListener('dragover', (e) => {
             e.preventDefault();
             dropZone.style.borderColor = '#2563eb';
             dropZone.style.background = '#f1f5f9';
         });
-
         dropZone.addEventListener('dragleave', () => {
             dropZone.style.borderColor = '#cbd5e1';
             dropZone.style.background = '#f8fafc';
         });
-
         dropZone.addEventListener('drop', (e) => {
             e.preventDefault();
             dropZone.style.borderColor = '#cbd5e1';
             dropZone.style.background = '#f8fafc';
-            
             const file = e.dataTransfer.files[0];
             if (file) handleFile(file);
         });
-
         fileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (file) handleFile(file);
@@ -455,65 +756,193 @@
                 showError('Ошибка: нужен файл изображения');
                 return;
             }
-
             if (file.size > 10 * 1024 * 1024) {
                 showError('Ошибка: максимум 10MB');
                 return;
             }
-
             hideError();
             selectedFile = file;
-            currentResultBlob = null;
-            downloadBtn.disabled = true;
-
             const reader = new FileReader();
             reader.onload = (e) => {
                 originalImage.src = e.target.result;
-                previewSection.style.display = 'block';
-                processBtn.disabled = false;
-                processedImage.style.display = 'none';
-                loader.style.display = 'none';
+                originalImage.onload = () => {
+                    previewSection.style.display = 'block';
+                    processBtn.disabled = false;
+                    downloadBtn.disabled = true;
+                    if (currentMode === 'manual') {
+                        initManualCanvas();
+                    } else {
+                        resetResult();
+                    }
+                };
             };
             reader.readAsDataURL(file);
         }
 
-        // ПРОСТОЙ АЛГОРИТМ УДАЛЕНИЯ ФОНА
-        function removeBackground(imageElement, targetR, targetG, targetB, threshold) {
+        function resetResult() {
+            // очищаем результат
+            resultContainer.innerHTML = ''; 
+            // можно показать просто иконку или ничего
+        }
+
+        function initManualCanvas() {
+            // Создаём canvas для ручного редактирования
+            const width = originalImage.naturalWidth;
+            const height = originalImage.naturalHeight;
+            canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            ctx = canvas.getContext('2d', { willReadFrequently: true });
+            ctx.drawImage(originalImage, 0, 0, width, height);
+
+            // Очищаем контейнер и вставляем canvas
+            resultContainer.innerHTML = '';
+            resultContainer.appendChild(canvas);
+
+            // Настраиваем события мыши для рисования
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseleave', stopDrawing);
+
+            // Масштабирование canvas в контейнере (CSS)
+            canvas.style.maxWidth = '100%';
+            canvas.style.maxHeight = '400px';
+            canvas.style.width = 'auto';
+            canvas.style.height = 'auto';
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const pos = getCanvasCoordinates(e);
+            lastX = pos.x;
+            lastY = pos.y;
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            const pos = getCanvasCoordinates(e);
+            const x = pos.x;
+            const y = pos.y;
+            const size = parseInt(brushSize.value);
+            const radius = size / 2;
+
+            // Рисуем кистью
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            if (currentTool === 'eraser') {
+                // Делаем прозрачным
+                ctx.globalCompositeOperation = 'destination-out'; // удаляет пиксели
+                ctx.fillStyle = 'rgba(0,0,0,1)'; // любой цвет, важно destination-out
+                ctx.fill();
+            } else {
+                // Восстанавливаем (возвращаем исходный цвет из оригинального изображения)
+                // Но просто так не восстановить, нужно копировать из оригинала.
+                // Для простоты будем использовать composite-operation copy и рисовать из исходного изображения?
+                // Более простой способ: использовать 'source-over' и заливать цветом, но это не вернёт исходный пиксель.
+                // Лучше: хранить копию оригинала и при восстановлении копировать пиксели.
+                // Сделаем так: при инициализации сохраняем оригинальные данные ImageData.
+                // Пока упростим: восстановление будет просто рисовать непрозрачным чёрным? Это неправильно.
+                // Для демо можно сделать восстановление, которое заливает цветом, но это не то.
+                // Реализуем полноценное восстановление:
+                // В manual режиме мы будем хранить отдельный canvas с оригиналом.
+                if (!this.originalCanvas) {
+                    this.originalCanvas = document.createElement('canvas');
+                    this.originalCanvas.width = canvas.width;
+                    this.originalCanvas.height = canvas.height;
+                    this.originalCanvas.getContext('2d').drawImage(originalImage, 0, 0);
+                }
+                // Теперь копируем область из оригинала в текущий canvas
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(x, y, radius, 0, Math.PI * 2);
+                ctx.clip();
+                ctx.drawImage(this.originalCanvas, 0, 0);
+                ctx.restore();
+            }
+            ctx.restore();
+
+            lastX = x;
+            lastY = y;
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function getCanvasCoordinates(e) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const x = (e.clientX - rect.left) * scaleX;
+            const y = (e.clientY - rect.top) * scaleY;
+            return { x, y };
+        }
+
+        // Авто-режим: удаление фона
+        function autoRemoveBackground(imgElement, targetR, targetG, targetB, threshold) {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d', { willReadFrequently: true });
-            
-            canvas.width = imageElement.naturalWidth;
-            canvas.height = imageElement.naturalHeight;
-            
-            ctx.drawImage(imageElement, 0, 0);
-            
+            canvas.width = imgElement.naturalWidth;
+            canvas.height = imgElement.naturalHeight;
+            ctx.drawImage(imgElement, 0, 0);
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const data = imageData.data;
-            
-            // Проходим по каждому пикселю
+
             for (let i = 0; i < data.length; i += 4) {
                 const r = data[i];
                 const g = data[i+1];
                 const b = data[i+2];
-                
-                // Вычисляем разницу с целевым цветом
                 const diff = Math.sqrt(
                     Math.pow(r - targetR, 2) +
                     Math.pow(g - targetG, 2) +
                     Math.pow(b - targetB, 2)
                 );
-                
-                // Если цвет похож на целевой - делаем прозрачным
                 if (diff < threshold) {
-                    data[i+3] = 0; // alpha = 0 (прозрачный)
+                    data[i+3] = 0;
                 }
             }
-            
             ctx.putImageData(imageData, 0, 0);
             return canvas;
         }
 
-        // Обработчик
+        // Определение цвета фона по углам
+        detectColorBtn.addEventListener('click', () => {
+            if (!originalImage.complete) return;
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = originalImage.naturalWidth;
+            canvas.height = originalImage.naturalHeight;
+            ctx.drawImage(originalImage, 0, 0);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+
+            // Берём углы
+            const corners = [
+                0, // верхний левый
+                (canvas.width - 1) * 4, // верхний правый
+                (canvas.height - 1) * canvas.width * 4, // нижний левый
+                (canvas.height - 1) * canvas.width * 4 + (canvas.width - 1) * 4 // нижний правый
+            ];
+
+            let r = 0, g = 0, b = 0;
+            corners.forEach(idx => {
+                r += data[idx];
+                g += data[idx+1];
+                b += data[idx+2];
+            });
+            r = Math.round(r / 4);
+            g = Math.round(g / 4);
+            b = Math.round(b / 4);
+
+            redInput.value = r;
+            greenInput.value = g;
+            blueInput.value = b;
+        });
+
+        // Кнопка Применить
         processBtn.addEventListener('click', () => {
             if (!originalImage.complete) {
                 showError('Изображение не загружено');
@@ -522,35 +951,40 @@
 
             processBtn.disabled = true;
             downloadBtn.disabled = true;
-            processedImage.style.display = 'none';
-            loader.style.display = 'block';
 
-            try {
-                // Получаем значения из полей
+            if (currentMode === 'auto') {
+                // Авто-режим
                 const targetR = parseInt(redInput.value) || 255;
                 const targetG = parseInt(greenInput.value) || 255;
                 const targetB = parseInt(blueInput.value) || 255;
                 const threshold = parseInt(thresholdSlider.value) || 30;
 
-                // Удаляем фон
-                const resultCanvas = removeBackground(originalImage, targetR, targetG, targetB, threshold);
-                
-                // Конвертируем в blob
+                const resultCanvas = autoRemoveBackground(originalImage, targetR, targetG, targetB, threshold);
                 resultCanvas.toBlob((blob) => {
                     currentResultBlob = blob;
                     const url = URL.createObjectURL(blob);
-                    processedImage.src = url;
-                    processedImage.style.display = 'block';
-                    loader.style.display = 'none';
+                    // Показываем результат как img
+                    resultContainer.innerHTML = '';
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.style.maxWidth = '100%';
+                    img.style.maxHeight = '400px';
+                    resultContainer.appendChild(img);
                     downloadBtn.disabled = false;
                     processBtn.disabled = false;
                 }, 'image/png');
-
-            } catch (error) {
-                console.error(error);
-                showError('Ошибка при обработке');
-                loader.style.display = 'none';
-                processBtn.disabled = false;
+            } else {
+                // Ручной режим: текущий canvas уже изменён, просто сохраняем blob
+                if (!canvas) {
+                    showError('Ошибка: canvas не инициализирован');
+                    processBtn.disabled = false;
+                    return;
+                }
+                canvas.toBlob((blob) => {
+                    currentResultBlob = blob;
+                    downloadBtn.disabled = false;
+                    processBtn.disabled = false;
+                }, 'image/png');
             }
         });
 
