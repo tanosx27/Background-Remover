@@ -27,7 +27,7 @@
 
         .app-container {
             width: 100%;
-            max-width: 1400px;
+            max-width: 1200px;
             background: white;
             border-radius: 40px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
@@ -159,6 +159,137 @@
             color: #94a3b8;
         }
 
+        /* Единое окно для ручного режима */
+        .editor-container {
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .canvas-wrapper {
+            background: repeating-conic-gradient(#e2e8f0 0% 25%, white 0% 50%) 50% / 20px 20px;
+            border-radius: 16px;
+            border: 2px solid #e2e8f0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            max-width: 100%;
+        }
+
+        .canvas-wrapper canvas {
+            max-width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            display: block;
+            cursor: crosshair;
+        }
+
+        .manual-tools {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            padding: 20px;
+            border-radius: 60px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tool-group {
+            display: flex;
+            gap: 10px;
+            background: #f1f5f9;
+            padding: 5px;
+            border-radius: 40px;
+        }
+
+        .tool-btn {
+            background: transparent;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .tool-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .tool-btn i {
+            font-size: 18px;
+        }
+
+        .brush-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #f1f5f9;
+            padding: 5px 20px;
+            border-radius: 40px;
+        }
+
+        .brush-control label {
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .brush-control input {
+            width: 150px;
+        }
+
+        .brush-control span {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            background: #f1f5f9;
+            border: none;
+            border-radius: 40px;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: #e2e8f0;
+        }
+
+        /* Авто-режим */
+        .auto-controls {
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+        }
+
         .preview-grid {
             display: flex;
             gap: 30px;
@@ -186,100 +317,18 @@
         .image-container {
             background: repeating-conic-gradient(#e2e8f0 0% 25%, white 0% 50%) 50% / 20px 20px;
             border-radius: 16px;
-            min-height: 300px;
+            min-height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px solid #e2e8f0;
             overflow: hidden;
-            position: relative;
-        }
-
-        .image-container canvas {
-            max-width: 100%;
-            max-height: 400px;
-            object-fit: contain;
-            display: block;
-            cursor: crosshair;
         }
 
         .image-container img {
             max-width: 100%;
-            max-height: 400px;
+            max-height: 300px;
             object-fit: contain;
-        }
-
-        /* Панель инструментов для ручного режима */
-        .manual-tools {
-            background: #f8fafc;
-            border-radius: 24px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 1px solid #e2e8f0;
-        }
-
-        .tool-row {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .tool-btn {
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 40px;
-            padding: 10px 25px;
-            font-size: 16px;
-            font-weight: 600;
-            color: #1e293b;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-
-        .tool-btn.active {
-            background: #2563eb;
-            border-color: #2563eb;
-            color: white;
-        }
-
-        .tool-btn i {
-            font-size: 18px;
-        }
-
-        .brush-size {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .brush-size label {
-            font-weight: 600;
-            color: #334155;
-        }
-
-        .brush-size input {
-            width: 150px;
-        }
-
-        .size-value {
-            min-width: 40px;
-            text-align: center;
-            font-weight: 600;
-            color: #2563eb;
-        }
-
-        /* Панель для авто-режима */
-        .auto-controls {
-            background: #f8fafc;
-            border-radius: 24px;
-            padding: 25px;
-            margin: 20px 0;
-            border: 1px solid #e2e8f0;
         }
 
         .color-inputs {
@@ -347,13 +396,6 @@
             background: #2563eb;
             border-radius: 50%;
             cursor: pointer;
-        }
-
-        .threshold-value {
-            text-align: center;
-            margin-top: 8px;
-            color: #2563eb;
-            font-weight: 600;
         }
 
         .button-group {
@@ -429,7 +471,7 @@
             text-align: center;
         }
 
-        /* Инструкция (модальное окно) */
+        /* Модальное окно с анимацией */
         .modal {
             display: none;
             position: fixed;
@@ -441,10 +483,13 @@
             align-items: center;
             justify-content: center;
             z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .modal.active {
             display: flex;
+            opacity: 1;
         }
 
         .modal-content {
@@ -455,6 +500,12 @@
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
         }
 
         .modal-content h2 {
@@ -489,6 +540,7 @@
             font-weight: 600;
             cursor: pointer;
             margin-top: 20px;
+            width: 100%;
         }
     </style>
 </head>
@@ -505,7 +557,7 @@
             </button>
         </div>
 
-        <!-- Модальное окно инструкции -->
+        <!-- Модальное окно с анимацией -->
         <div class="modal" id="instructionModal">
             <div class="modal-content">
                 <h2><i class="fas fa-info-circle"></i> Как пользоваться</h2>
@@ -513,22 +565,25 @@
                 <h3>🔹 Автоматический режим (в разработке)</h3>
                 <ul>
                     <li>Хорошо удаляет однотонный фон (особенно белый).</li>
-                    <li>Вы можете вручную задать цвет фона или нажать "Определить автоматически" (цвет возьмётся из углов).</li>
+                    <li>Вы можете вручную задать цвет фона или нажать "Определить автоматически".</li>
                     <li>Ползунок чувствительности: меньше — точное совпадение, больше — удаляет похожие оттенки.</li>
                     <li><strong>Важно:</strong> на сложных фонах может работать некорректно — используйте ручной режим.</li>
                 </ul>
 
                 <h3>🔸 Ручной режим</h3>
                 <ul>
-                    <li>Вы сами "стираете" фон кистью.</li>
-                    <li>Выберите инструмент: <i class="fas fa-eraser"></i> Ластик (удаляет фон) или <i class="fas fa-paint-brush"></i> Восстановитель (возвращает удалённые области).</li>
-                    <li>Регулируйте размер кисти.</li>
-                    <li>Просто рисуйте по изображению — фон станет прозрачным.</li>
+                    <li>Вы сами "стираете" фон в одном окне.</li>
+                    <li><i class="fas fa-eraser"></i> <strong>Ластик</strong> — удаляет фон (делает прозрачным).</li>
+                    <li><i class="fas fa-paint-brush"></i> <strong>Кисть</strong> — восстанавливает удалённые области.</li>
+                    <li><i class="fas fa-undo-alt"></i> <strong>Отмена</strong> — возвращает последнее действие (до 10 шагов).</li>
+                    <li><i class="fas fa-redo-alt"></i> <strong>Повтор</strong> — возвращает отменённое действие.</li>
+                    <li><i class="fas fa-sync-alt"></i> <strong>Сброс</strong> — возвращает исходное изображение.</li>
+                    <li>Регулируйте размер кисти для точной работы.</li>
                 </ul>
 
                 <p style="margin-top:20px; color:#64748b;">Автоматический режим дорабатывается. Для лучшего качества используйте ручной.</p>
 
-                <button class="close-modal" id="closeModal">Понятно</button>
+                <button class="close-modal" id="closeModal">Понятно, спасибо!</button>
             </div>
         </div>
 
@@ -554,25 +609,165 @@
             <!-- Ошибки -->
             <div id="errorMessage" class="error"></div>
 
-            <!-- Превью (общее) -->
-            <div id="previewSection" style="display: none;">
+            <!-- Контент в зависимости от режима -->
+            <div id="contentArea"></div>
+
+            <!-- Кнопки действий (общие) -->
+            <div class="button-group" id="actionButtons" style="display: none;">
+                <button class="btn btn-primary" id="processBtn" disabled>
+                    <i class="fas fa-cut"></i> Применить
+                </button>
+                <button class="btn btn-secondary" id="downloadBtn" disabled>
+                    <i class="fas fa-download"></i> Скачать
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM элементы
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const contentArea = document.getElementById('contentArea');
+        const processBtn = document.getElementById('processBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const actionButtons = document.getElementById('actionButtons');
+        const errorDiv = document.getElementById('errorMessage');
+        const autoModeBtn = document.getElementById('autoModeBtn');
+        const manualModeBtn = document.getElementById('manualModeBtn');
+        const instructionBtn = document.getElementById('instructionBtn');
+        const instructionModal = document.getElementById('instructionModal');
+        const closeModal = document.getElementById('closeModal');
+
+        // Переменные состояния
+        let selectedFile = null;
+        let currentMode = 'auto';
+        let currentResultBlob = null;
+        
+        // Для ручного режима
+        let canvas = null;
+        let ctx = null;
+        let originalImageData = null; // сохраняем оригинал
+        let history = []; // история изменений
+        let historyIndex = -1;
+        let isDrawing = false;
+        let currentTool = 'eraser';
+        let brushSize = 20;
+
+        // Инструкция с анимацией
+        instructionBtn.addEventListener('click', () => {
+            instructionModal.classList.add('active');
+        });
+
+        closeModal.addEventListener('click', () => {
+            instructionModal.classList.remove('active');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === instructionModal) {
+                instructionModal.classList.remove('active');
+            }
+        });
+
+        // Переключение режимов
+        autoModeBtn.addEventListener('click', () => {
+            autoModeBtn.classList.add('active');
+            manualModeBtn.classList.remove('active');
+            currentMode = 'auto';
+            if (selectedFile) {
+                renderAutoMode();
+            } else {
+                contentArea.innerHTML = '';
+                actionButtons.style.display = 'none';
+            }
+        });
+
+        manualModeBtn.addEventListener('click', () => {
+            manualModeBtn.classList.add('active');
+            autoModeBtn.classList.remove('active');
+            currentMode = 'manual';
+            if (selectedFile) {
+                initManualMode();
+            } else {
+                contentArea.innerHTML = '';
+                actionButtons.style.display = 'none';
+            }
+        });
+
+        // Загрузка файла
+        dropZone.addEventListener('click', () => fileInput.click());
+        
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#2563eb';
+            dropZone.style.background = '#f1f5f9';
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.style.borderColor = '#cbd5e1';
+            dropZone.style.background = '#f8fafc';
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.style.borderColor = '#cbd5e1';
+            dropZone.style.background = '#f8fafc';
+            const file = e.dataTransfer.files[0];
+            if (file) handleFile(file);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) handleFile(file);
+        });
+
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showError('Ошибка: нужен файл изображения');
+                return;
+            }
+            if (file.size > 10 * 1024 * 1024) {
+                showError('Ошибка: максимум 10MB');
+                return;
+            }
+            hideError();
+            selectedFile = file;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = () => {
+                    if (currentMode === 'auto') {
+                        renderAutoMode(img);
+                    } else {
+                        initManualMode(img);
+                    }
+                    actionButtons.style.display = 'flex';
+                    processBtn.disabled = false;
+                    downloadBtn.disabled = true;
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ==================== АВТО-РЕЖИМ ====================
+        function renderAutoMode(img) {
+            const html = `
                 <div class="preview-grid">
                     <div class="preview-card">
                         <h3><i class="fas fa-image"></i> Исходное</h3>
                         <div class="image-container">
-                            <img id="originalImage" src="" alt="Original">
+                            <img src="${img.src}" style="max-width:100%; max-height:300px;">
                         </div>
                     </div>
                     <div class="preview-card">
                         <h3><i class="fas fa-cut"></i> Результат</h3>
-                        <div class="image-container" id="resultContainer">
-                            <!-- Здесь будет canvas для ручного режима или img для авто -->
-                        </div>
+                        <div class="image-container" id="autoResultContainer"></div>
                     </div>
                 </div>
 
-                <!-- Панель для авто-режима -->
-                <div id="autoPanel" class="auto-controls">
+                <div class="auto-controls">
                     <div class="color-inputs">
                         <div class="color-input-group">
                             <label>Красный (R)</label>
@@ -599,332 +794,37 @@
                         <i class="fas fa-exclamation-triangle"></i> Автоматический режим в разработке. Лучше всего удаляет белый фон.
                     </div>
                 </div>
+            `;
+            contentArea.innerHTML = html;
 
-                <!-- Панель для ручного режима -->
-                <div id="manualPanel" class="manual-tools" style="display: none;">
-                    <div class="tool-row">
-                        <button class="tool-btn active" id="eraserTool">
-                            <i class="fas fa-eraser"></i> Ластик
-                        </button>
-                        <button class="tool-btn" id="restoreTool">
-                            <i class="fas fa-paint-brush"></i> Восстановитель
-                        </button>
-                    </div>
-                    <div class="tool-row">
-                        <div class="brush-size">
-                            <label>Размер кисти:</label>
-                            <input type="range" id="brushSize" min="5" max="100" value="20">
-                            <span class="size-value" id="brushSizeValue">20</span>
-                        </div>
-                    </div>
-                </div>
+            // Сохраняем ссылку на изображение для обработки
+            window.currentImg = img;
 
-                <!-- Кнопки действий -->
-                <div class="button-group">
-                    <button class="btn btn-primary" id="processBtn" disabled>
-                        <i class="fas fa-cut"></i> Применить
-                    </button>
-                    <button class="btn btn-secondary" id="downloadBtn" disabled>
-                        <i class="fas fa-download"></i> Скачать
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+            // Инициализация событий
+            document.getElementById('thresholdSlider').addEventListener('input', (e) => {
+                document.getElementById('thresholdValue').textContent = e.target.value;
+            });
 
-    <script>
-        // DOM элементы
-        const dropZone = document.getElementById('dropZone');
-        const fileInput = document.getElementById('fileInput');
-        const originalImage = document.getElementById('originalImage');
-        const previewSection = document.getElementById('previewSection');
-        const processBtn = document.getElementById('processBtn');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const errorDiv = document.getElementById('errorMessage');
-        const resultContainer = document.getElementById('resultContainer');
-        const autoModeBtn = document.getElementById('autoModeBtn');
-        const manualModeBtn = document.getElementById('manualModeBtn');
-        const autoPanel = document.getElementById('autoPanel');
-        const manualPanel = document.getElementById('manualPanel');
-        const redInput = document.getElementById('redInput');
-        const greenInput = document.getElementById('greenInput');
-        const blueInput = document.getElementById('blueInput');
-        const thresholdSlider = document.getElementById('thresholdSlider');
-        const thresholdValue = document.getElementById('thresholdValue');
-        const detectColorBtn = document.getElementById('detectColorBtn');
-        const eraserTool = document.getElementById('eraserTool');
-        const restoreTool = document.getElementById('restoreTool');
-        const brushSize = document.getElementById('brushSize');
-        const brushSizeValue = document.getElementById('brushSizeValue');
-        const instructionBtn = document.getElementById('instructionBtn');
-        const instructionModal = document.getElementById('instructionModal');
-        const closeModal = document.getElementById('closeModal');
-
-        // Переменные состояния
-        let selectedFile = null;
-        let currentMode = 'auto'; // 'auto' или 'manual'
-        let currentResultBlob = null;
-        let canvas = null; // для ручного режима
-        let ctx = null;
-        let isDrawing = false;
-        let currentTool = 'eraser'; // 'eraser' или 'restore'
-        let lastX = 0, lastY = 0;
-
-        // Обновление значений
-        thresholdSlider.addEventListener('input', (e) => {
-            thresholdValue.textContent = e.target.value;
-        });
-        brushSize.addEventListener('input', (e) => {
-            brushSizeValue.textContent = e.target.value;
-        });
-
-        // Переключение режимов
-        autoModeBtn.addEventListener('click', () => {
-            autoModeBtn.classList.add('active');
-            manualModeBtn.classList.remove('active');
-            autoPanel.style.display = 'block';
-            manualPanel.style.display = 'none';
-            currentMode = 'auto';
-            // Обновим результат, если есть изображение
-            if (selectedFile) {
-                // Сбросим результат, можно заново показать оригинал
-                resetResult();
-            }
-        });
-
-        manualModeBtn.addEventListener('click', () => {
-            manualModeBtn.classList.add('active');
-            autoModeBtn.classList.remove('active');
-            manualPanel.style.display = 'block';
-            autoPanel.style.display = 'none';
-            currentMode = 'manual';
-            if (selectedFile) {
-                initManualCanvas();
-            }
-        });
-
-        // Инструменты ручного режима
-        eraserTool.addEventListener('click', () => {
-            eraserTool.classList.add('active');
-            restoreTool.classList.remove('active');
-            currentTool = 'eraser';
-        });
-        restoreTool.addEventListener('click', () => {
-            restoreTool.classList.add('active');
-            eraserTool.classList.remove('active');
-            currentTool = 'restore';
-        });
-
-        // Инструкция
-        instructionBtn.addEventListener('click', () => {
-            instructionModal.classList.add('active');
-        });
-        closeModal.addEventListener('click', () => {
-            instructionModal.classList.remove('active');
-        });
-        window.addEventListener('click', (e) => {
-            if (e.target === instructionModal) {
-                instructionModal.classList.remove('active');
-            }
-        });
-
-        // Загрузка файла
-        dropZone.addEventListener('click', () => fileInput.click());
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.style.borderColor = '#2563eb';
-            dropZone.style.background = '#f1f5f9';
-        });
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.style.borderColor = '#cbd5e1';
-            dropZone.style.background = '#f8fafc';
-        });
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.style.borderColor = '#cbd5e1';
-            dropZone.style.background = '#f8fafc';
-            const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
-        });
-        fileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) handleFile(file);
-        });
-
-        function handleFile(file) {
-            if (!file.type.startsWith('image/')) {
-                showError('Ошибка: нужен файл изображения');
-                return;
-            }
-            if (file.size > 10 * 1024 * 1024) {
-                showError('Ошибка: максимум 10MB');
-                return;
-            }
-            hideError();
-            selectedFile = file;
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                originalImage.src = e.target.result;
-                originalImage.onload = () => {
-                    previewSection.style.display = 'block';
-                    processBtn.disabled = false;
-                    downloadBtn.disabled = true;
-                    if (currentMode === 'manual') {
-                        initManualCanvas();
-                    } else {
-                        resetResult();
-                    }
-                };
-            };
-            reader.readAsDataURL(file);
+            document.getElementById('detectColorBtn').addEventListener('click', () => {
+                detectColorFromImage(img);
+            });
         }
 
-        function resetResult() {
-            // очищаем результат
-            resultContainer.innerHTML = ''; 
-            // можно показать просто иконку или ничего
-        }
-
-        function initManualCanvas() {
-            // Создаём canvas для ручного редактирования
-            const width = originalImage.naturalWidth;
-            const height = originalImage.naturalHeight;
-            canvas = document.createElement('canvas');
-            canvas.width = width;
-            canvas.height = height;
-            ctx = canvas.getContext('2d', { willReadFrequently: true });
-            ctx.drawImage(originalImage, 0, 0, width, height);
-
-            // Очищаем контейнер и вставляем canvas
-            resultContainer.innerHTML = '';
-            resultContainer.appendChild(canvas);
-
-            // Настраиваем события мыши для рисования
-            canvas.addEventListener('mousedown', startDrawing);
-            canvas.addEventListener('mousemove', draw);
-            canvas.addEventListener('mouseup', stopDrawing);
-            canvas.addEventListener('mouseleave', stopDrawing);
-
-            // Масштабирование canvas в контейнере (CSS)
-            canvas.style.maxWidth = '100%';
-            canvas.style.maxHeight = '400px';
-            canvas.style.width = 'auto';
-            canvas.style.height = 'auto';
-        }
-
-        function startDrawing(e) {
-            isDrawing = true;
-            const pos = getCanvasCoordinates(e);
-            lastX = pos.x;
-            lastY = pos.y;
-        }
-
-        function draw(e) {
-            if (!isDrawing) return;
-            e.preventDefault();
-            const pos = getCanvasCoordinates(e);
-            const x = pos.x;
-            const y = pos.y;
-            const size = parseInt(brushSize.value);
-            const radius = size / 2;
-
-            // Рисуем кистью
-            ctx.save();
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2);
-            if (currentTool === 'eraser') {
-                // Делаем прозрачным
-                ctx.globalCompositeOperation = 'destination-out'; // удаляет пиксели
-                ctx.fillStyle = 'rgba(0,0,0,1)'; // любой цвет, важно destination-out
-                ctx.fill();
-            } else {
-                // Восстанавливаем (возвращаем исходный цвет из оригинального изображения)
-                // Но просто так не восстановить, нужно копировать из оригинала.
-                // Для простоты будем использовать composite-operation copy и рисовать из исходного изображения?
-                // Более простой способ: использовать 'source-over' и заливать цветом, но это не вернёт исходный пиксель.
-                // Лучше: хранить копию оригинала и при восстановлении копировать пиксели.
-                // Сделаем так: при инициализации сохраняем оригинальные данные ImageData.
-                // Пока упростим: восстановление будет просто рисовать непрозрачным чёрным? Это неправильно.
-                // Для демо можно сделать восстановление, которое заливает цветом, но это не то.
-                // Реализуем полноценное восстановление:
-                // В manual режиме мы будем хранить отдельный canvas с оригиналом.
-                if (!this.originalCanvas) {
-                    this.originalCanvas = document.createElement('canvas');
-                    this.originalCanvas.width = canvas.width;
-                    this.originalCanvas.height = canvas.height;
-                    this.originalCanvas.getContext('2d').drawImage(originalImage, 0, 0);
-                }
-                // Теперь копируем область из оригинала в текущий canvas
-                ctx.save();
-                ctx.beginPath();
-                ctx.arc(x, y, radius, 0, Math.PI * 2);
-                ctx.clip();
-                ctx.drawImage(this.originalCanvas, 0, 0);
-                ctx.restore();
-            }
-            ctx.restore();
-
-            lastX = x;
-            lastY = y;
-        }
-
-        function stopDrawing() {
-            isDrawing = false;
-        }
-
-        function getCanvasCoordinates(e) {
-            const rect = canvas.getBoundingClientRect();
-            const scaleX = canvas.width / rect.width;
-            const scaleY = canvas.height / rect.height;
-            const x = (e.clientX - rect.left) * scaleX;
-            const y = (e.clientY - rect.top) * scaleY;
-            return { x, y };
-        }
-
-        // Авто-режим: удаление фона
-        function autoRemoveBackground(imgElement, targetR, targetG, targetB, threshold) {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d', { willReadFrequently: true });
-            canvas.width = imgElement.naturalWidth;
-            canvas.height = imgElement.naturalHeight;
-            ctx.drawImage(imgElement, 0, 0);
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const data = imageData.data;
-
-            for (let i = 0; i < data.length; i += 4) {
-                const r = data[i];
-                const g = data[i+1];
-                const b = data[i+2];
-                const diff = Math.sqrt(
-                    Math.pow(r - targetR, 2) +
-                    Math.pow(g - targetG, 2) +
-                    Math.pow(b - targetB, 2)
-                );
-                if (diff < threshold) {
-                    data[i+3] = 0;
-                }
-            }
-            ctx.putImageData(imageData, 0, 0);
-            return canvas;
-        }
-
-        // Определение цвета фона по углам
-        detectColorBtn.addEventListener('click', () => {
-            if (!originalImage.complete) return;
+        function detectColorFromImage(img) {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
-            canvas.width = originalImage.naturalWidth;
-            canvas.height = originalImage.naturalHeight;
-            ctx.drawImage(originalImage, 0, 0);
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const data = imageData.data;
-
-            // Берём углы
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            ctx.drawImage(img, 0, 0);
+            
+            const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+            
+            // Берём пиксели из углов
             const corners = [
-                0, // верхний левый
-                (canvas.width - 1) * 4, // верхний правый
-                (canvas.height - 1) * canvas.width * 4, // нижний левый
-                (canvas.height - 1) * canvas.width * 4 + (canvas.width - 1) * 4 // нижний правый
+                0,
+                (canvas.width - 1) * 4,
+                (canvas.height - 1) * canvas.width * 4,
+                (canvas.height - 1) * canvas.width * 4 + (canvas.width - 1) * 4
             ];
 
             let r = 0, g = 0, b = 0;
@@ -933,62 +833,275 @@
                 g += data[idx+1];
                 b += data[idx+2];
             });
-            r = Math.round(r / 4);
-            g = Math.round(g / 4);
-            b = Math.round(b / 4);
 
-            redInput.value = r;
-            greenInput.value = g;
-            blueInput.value = b;
-        });
+            document.getElementById('redInput').value = Math.round(r / 4);
+            document.getElementById('greenInput').value = Math.round(g / 4);
+            document.getElementById('blueInput').value = Math.round(b / 4);
+        }
 
-        // Кнопка Применить
-        processBtn.addEventListener('click', () => {
-            if (!originalImage.complete) {
-                showError('Изображение не загружено');
-                return;
-            }
+        // ==================== РУЧНОЙ РЕЖИМ (УЛУЧШЕННЫЙ) ====================
+        function initManualMode(img) {
+            const html = `
+                <div class="editor-container">
+                    <div class="canvas-wrapper" id="canvasWrapper">
+                        <canvas id="manualCanvas"></canvas>
+                    </div>
+                    
+                    <div class="manual-tools">
+                        <div class="tool-group">
+                            <button class="tool-btn active" id="eraserTool">
+                                <i class="fas fa-eraser"></i> Ластик
+                            </button>
+                            <button class="tool-btn" id="brushTool">
+                                <i class="fas fa-paint-brush"></i> Кисть
+                            </button>
+                        </div>
 
-            processBtn.disabled = true;
-            downloadBtn.disabled = true;
+                        <div class="brush-control">
+                            <label><i class="fas fa-circle"></i> Размер:</label>
+                            <input type="range" id="brushSize" min="5" max="100" value="20">
+                            <span id="brushSizeValue">20</span>
+                        </div>
 
-            if (currentMode === 'auto') {
-                // Авто-режим
-                const targetR = parseInt(redInput.value) || 255;
-                const targetG = parseInt(greenInput.value) || 255;
-                const targetB = parseInt(blueInput.value) || 255;
-                const threshold = parseInt(thresholdSlider.value) || 30;
+                        <div class="action-buttons">
+                            <button class="icon-btn" id="undoBtn" title="Отмена (Ctrl+Z)">
+                                <i class="fas fa-undo-alt"></i>
+                            </button>
+                            <button class="icon-btn" id="redoBtn" title="Повтор (Ctrl+Y)">
+                                <i class="fas fa-redo-alt"></i>
+                            </button>
+                            <button class="icon-btn" id="resetBtn" title="Сбросить">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            contentArea.innerHTML = html;
 
-                const resultCanvas = autoRemoveBackground(originalImage, targetR, targetG, targetB, threshold);
-                resultCanvas.toBlob((blob) => {
-                    currentResultBlob = blob;
-                    const url = URL.createObjectURL(blob);
-                    // Показываем результат как img
-                    resultContainer.innerHTML = '';
-                    const img = document.createElement('img');
-                    img.src = url;
-                    img.style.maxWidth = '100%';
-                    img.style.maxHeight = '400px';
-                    resultContainer.appendChild(img);
-                    downloadBtn.disabled = false;
-                    processBtn.disabled = false;
-                }, 'image/png');
-            } else {
-                // Ручной режим: текущий canvas уже изменён, просто сохраняем blob
-                if (!canvas) {
-                    showError('Ошибка: canvas не инициализирован');
-                    processBtn.disabled = false;
-                    return;
+            // Инициализация canvas
+            canvas = document.getElementById('manualCanvas');
+            ctx = canvas.getContext('2d', { willReadFrequently: true });
+            
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            
+            // Рисуем изображение
+            ctx.drawImage(img, 0, 0);
+            
+            // Сохраняем оригинал
+            originalImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            
+            // Инициализируем историю
+            history = [ctx.getImageData(0, 0, canvas.width, canvas.height)];
+            historyIndex = 0;
+
+            // Настройка событий
+            setupManualEvents();
+        }
+
+        function setupManualEvents() {
+            // Инструменты
+            const eraserTool = document.getElementById('eraserTool');
+            const brushTool = document.getElementById('brushTool');
+            const brushSizeInput = document.getElementById('brushSize');
+            const brushSizeSpan = document.getElementById('brushSizeValue');
+            const undoBtn = document.getElementById('undoBtn');
+            const redoBtn = document.getElementById('redoBtn');
+            const resetBtn = document.getElementById('resetBtn');
+
+            eraserTool.addEventListener('click', () => {
+                eraserTool.classList.add('active');
+                brushTool.classList.remove('active');
+                currentTool = 'eraser';
+            });
+
+            brushTool.addEventListener('click', () => {
+                brushTool.classList.add('active');
+                eraserTool.classList.remove('active');
+                currentTool = 'brush';
+            });
+
+            brushSizeInput.addEventListener('input', (e) => {
+                brushSize = parseInt(e.target.value);
+                brushSizeSpan.textContent = brushSize;
+            });
+
+            // События мыши для рисования
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseleave', stopDrawing);
+
+            // Клавиши отмены/повтора
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'z') {
+                    e.preventDefault();
+                    undo();
                 }
-                canvas.toBlob((blob) => {
-                    currentResultBlob = blob;
-                    downloadBtn.disabled = false;
-                    processBtn.disabled = false;
-                }, 'image/png');
+                if (e.ctrlKey && e.key === 'y') {
+                    e.preventDefault();
+                    redo();
+                }
+            });
+
+            undoBtn.addEventListener('click', undo);
+            redoBtn.addEventListener('click', redo);
+            resetBtn.addEventListener('click', reset);
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const pos = getCanvasCoordinates(e);
+            drawAt(pos.x, pos.y);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            const pos = getCanvasCoordinates(e);
+            drawAt(pos.x, pos.y);
+        }
+
+        function drawAt(x, y) {
+            const size = brushSize;
+            const radius = size / 2;
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            
+            if (currentTool === 'eraser') {
+                // Ластик: делаем прозрачным
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.fillStyle = 'rgba(0,0,0,1)';
+                ctx.fill();
+            } else {
+                // Кисть: восстанавливаем из оригинала
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(x, y, radius, 0, Math.PI * 2);
+                ctx.clip();
+                ctx.putImageData(originalImageData, 0, 0);
+                ctx.restore();
+            }
+            ctx.restore();
+
+            // Добавляем в историю (не каждый кадр, а через раз для производительности)
+            if (Math.random() > 0.5) {
+                saveToHistory();
+            }
+        }
+
+        function stopDrawing() {
+            if (isDrawing) {
+                isDrawing = false;
+                saveToHistory(); // сохраняем после окончания штриха
+            }
+        }
+
+        function getCanvasCoordinates(e) {
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            return {
+                x: (e.clientX - rect.left) * scaleX,
+                y: (e.clientY - rect.top) * scaleY
+            };
+        }
+
+        function saveToHistory() {
+            // Ограничиваем историю 10 шагами
+            if (historyIndex < history.length - 1) {
+                history = history.slice(0, historyIndex + 1);
+            }
+            
+            history.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+            historyIndex++;
+            
+            if (history.length > 10) {
+                history.shift();
+                historyIndex--;
+            }
+        }
+
+        function undo() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                ctx.putImageData(history[historyIndex], 0, 0);
+            }
+        }
+
+        function redo() {
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                ctx.putImageData(history[historyIndex], 0, 0);
+            }
+        }
+
+        function reset() {
+            ctx.putImageData(originalImageData, 0, 0);
+            history = [originalImageData];
+            historyIndex = 0;
+        }
+
+        // ==================== ОБЩИЕ ФУНКЦИИ ====================
+        processBtn.addEventListener('click', () => {
+            if (currentMode === 'auto') {
+                processAutoMode();
+            } else {
+                processManualMode();
             }
         });
 
-        // Скачивание
+        function processAutoMode() {
+            const red = parseInt(document.getElementById('redInput').value) || 255;
+            const green = parseInt(document.getElementById('greenInput').value) || 255;
+            const blue = parseInt(document.getElementById('blueInput').value) || 255;
+            const threshold = parseInt(document.getElementById('thresholdSlider').value) || 30;
+
+            // Создаём canvas для обработки
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.currentImg.naturalWidth;
+            canvas.height = window.currentImg.naturalHeight;
+            ctx.drawImage(window.currentImg, 0, 0);
+
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i];
+                const g = data[i+1];
+                const b = data[i+2];
+                const diff = Math.sqrt(
+                    Math.pow(r - red, 2) +
+                    Math.pow(g - green, 2) +
+                    Math.pow(b - blue, 2)
+                );
+                if (diff < threshold) {
+                    data[i+3] = 0;
+                }
+            }
+
+            ctx.putImageData(imageData, 0, 0);
+
+            canvas.toBlob((blob) => {
+                currentResultBlob = blob;
+                const url = URL.createObjectURL(blob);
+                const resultContainer = document.getElementById('autoResultContainer');
+                resultContainer.innerHTML = `<img src="${url}" style="max-width:100%; max-height:300px;">`;
+                downloadBtn.disabled = false;
+            }, 'image/png');
+        }
+
+        function processManualMode() {
+            canvas.toBlob((blob) => {
+                currentResultBlob = blob;
+                downloadBtn.disabled = false;
+            }, 'image/png');
+        }
+
         downloadBtn.addEventListener('click', () => {
             if (currentResultBlob) {
                 const link = document.createElement('a');
